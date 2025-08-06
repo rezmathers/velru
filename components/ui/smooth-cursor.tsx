@@ -99,7 +99,7 @@ export function MagicCursor({
         width: 24,
         height: 24,
         borderRadius: "50%",
-        backgroundColor: "grey",
+        backgroundColor: "white",
         opacity: 0.5,
         x: cursorX,
         y: cursorY,
