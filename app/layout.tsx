@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { MagicCursor } from "@/components/ui/smooth-cursor";
+import Navbar from "@/components/layout/navbar";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,11 +27,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body 
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-950 min-h-screen` }
       >
+        <MagicCursor/>
+        <Navbar />
         {children}
       </body>
     </html>
   );
 }
+
+/* Hide the default cursor for the whole page */
+

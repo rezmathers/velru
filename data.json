@@ -1,0 +1,67 @@
+[
+  {
+    "id": "resource-limitation",
+    "listItemHeadline": "Struggling with Limited Resources?",
+    "listItemDescription": "Leverage our TaaS model for on-demand C-suite expertise without the overhead.",
+    "listItemImage": "https://picsum.photos/600/600?random=6",
+    "expandedContent": {
+      "problem": "Small businesses and solopreneurs often lack the in-house expertise and budget for dedicated C-suite professionals. This leads to missed opportunities and stalled growth.",
+      "solutionHeadline": "Affordable, On-Demand Expertise.",
+      "solutionDescription": "Access 10 C-suite roles (CCO, CMO, CTO, etc.) through our Template-as-a-Service (TaaS) model. Leverage pre-designed, industry-specific templates and AI-powered workflows for high-quality deliverables at a fraction of traditional agency costs.",
+      "image": "https://picsum.photos/600/600?random=1",
+      "altText": "Illustration of efficient resource management"
+    }
+  },
+  {
+    "id": "inconsistent-quality",
+    "listItemHeadline": "Inconsistent Service Quality?",
+    "listItemDescription": "Our standardized templates and talent ensure professional-grade results, every time.",
+    "listItemImage": "https://picsum.photos/600/600?random=7",
+    "expandedContent": {
+      "problem": "Reliance on individual freelancers often leads to unpredictable quality, missed deadlines, and a lack of standardized processes, hindering consistent business operations.",
+      "solutionHeadline": "Standardized Excellence.",
+      "solutionDescription": "Our platform rigorously trains entry-level talent using proprietary templates and automated workflows, ensuring consistent, professional-grade results. This eliminates the guesswork and delivers reliable service quality.",
+      "image": "https://picsum.photos/600/600?random=2",
+      "altText": "Illustration of consistent service quality"
+    }
+  },
+  {
+    "id": "digital-transformation",
+    "listItemHeadline": "Struggling with Digital Transformation?",
+    "listItemDescription": "Seamlessly integrate new digital solutions with our API-first, cloud-native platform.",
+    "listItemImage": "https://picsum.photos/600/600?random=8",
+    "expandedContent": {
+      "problem": "Integrating new digital solutions with existing IT infrastructure, ensuring data security, and managing complex governance requirements are significant hurdles for businesses, especially larger enterprises.",
+      "solutionHeadline": "Seamless AI-Powered Integration.",
+      "solutionDescription": "Leverage VELRU's cloud-native SaaS platform with an API-first approach for seamless integration. Our enterprise-grade security (SOC 2 Type II, ISO 27001, GDPR compliance) and AI-powered automation ensure your digital transformation is smooth, secure, and data-driven.",
+      "image": "https://picsum.photos/600/600?random=3",
+      "altText": "Illustration of digital transformation"
+    }
+  },
+  {
+    "id": "market-reach",
+    "listItemHeadline": "Limited Market Reach?",
+    "listItemDescription": "Expand your service offerings and scale confidently with our white-label franchise model.",
+    "listItemImage": "https://picsum.photos/600/600?random=9",
+    "expandedContent": {
+      "problem": "Many businesses, from start-ups to established firms, face significant challenges in expanding their market footprint and scaling operations efficiently without ballooning costs.",
+      "solutionHeadline": "Expand with Confidence.",
+      "solutionDescription": "Our white-label franchising model allows you to rapidly scale your service offerings under your own brand, utilizing VELRU's proven templates, talent development, and robust platform infrastructure. This provides a clear path to exponential growth.",
+      "image": "https://picsum.photos/600/600?random=4",
+      "altText": "Illustration of market expansion"
+    }
+  },
+  {
+    "id": "high-cac",
+    "listItemHeadline": "High Customer Acquisition Costs?",
+    "listItemDescription": "Attract a broad market spectrum with accessible price points and high lifetime value.",
+    "listItemImage": "https://picsum.photos/600/600?random=10",
+    "expandedContent": {
+      "problem": "Traditional marketing and sales channels often result in prohibitively high customer acquisition costs, impacting profitability and hindering sustainable growth, especially for service-based businesses.",
+      "solutionHeadline": "Efficient Acquisition, Maximized ROI.",
+      "solutionDescription": "By delivering professional-grade services at accessible price points, VELRU attracts a broad spectrum of the market, from micro-businesses to large corporations. Our tiered service model creates strong customer lifetime value and reduces churn, naturally optimizing your CAC.",
+      "image": "https://picsum.photos/600/600?random=5",
+      "altText": "Illustration of customer acquisition funnel"
+    }
+  }
+]
