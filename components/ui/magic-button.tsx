@@ -16,15 +16,14 @@ export default function MagneticButton({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!ref.current) return;
-
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current.getBoundingClientRect();
-    const middleX = clientX - (left + width / 2);
-    const middleY = clientY - (top + height / 2);
-    const newPosition = { x: middleX, y: middleY };
+    const x = clientX - (left + width / 2);
+    const y = clientY - (top + height / 2);
+    const newPosition = { x, y };
     setPosition(newPosition);
 
-    // FIX: Dispatch a custom event with the button's movement offset
+    // Dispatch the custom event with the position offset
     window.dispatchEvent(
       new CustomEvent("magnetic-move", { detail: { position: newPosition } })
     );
@@ -33,8 +32,8 @@ export default function MagneticButton({
   const handleMouseLeave = () => {
     const newPosition = { x: 0, y: 0 };
     setPosition(newPosition);
-
-    // FIX: Dispatch the event on leave to reset the cursor's offset
+    
+    // Dispatch the event on leave to reset the cursor's offset
     window.dispatchEvent(
       new CustomEvent("magnetic-move", { detail: { position: newPosition } })
     );
@@ -48,16 +47,18 @@ export default function MagneticButton({
       className={cn("relative", className)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      animate={{ x, y }}
-      transition={{
-        type: "spring",
-        damping: 10,
-        stiffness: 150,
-        mass: 0.1,
-      }}
       {...props}
     >
-      {children}
+      {/* This span contains the button's text. It animates based on the
+          magnetic pull and has a high z-index to sit on top of the cursor. */}
+      <motion.span
+        className="relative block"
+        animate={{ x, y }}
+        transition={{ type: "spring", damping: 25, stiffness: 150, mass:  0.01 }}
+        style={{ zIndex: 50 }}
+      >
+        {children}
+      </motion.span>
     </motion.button>
   );
 }

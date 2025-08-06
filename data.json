@@ -4,6 +4,7 @@
     "listItemHeadline": "Struggling with Limited Resources?",
     "listItemDescription": "Leverage our TaaS model for on-demand C-suite expertise without the overhead.",
     "listItemImage": "https://picsum.photos/600/600?random=6",
+    "highlighterColor": "#3b82f6",
     "expandedContent": {
       "problem": "Small businesses and solopreneurs often lack the in-house expertise and budget for dedicated C-suite professionals. This leads to missed opportunities and stalled growth.",
       "solutionHeadline": "Affordable, On-Demand Expertise.",
@@ -17,6 +18,7 @@
     "listItemHeadline": "Inconsistent Service Quality?",
     "listItemDescription": "Our standardized templates and talent ensure professional-grade results, every time.",
     "listItemImage": "https://picsum.photos/600/600?random=7",
+    "highlighterColor": "#8b5cf6",
     "expandedContent": {
       "problem": "Reliance on individual freelancers often leads to unpredictable quality, missed deadlines, and a lack of standardized processes, hindering consistent business operations.",
       "solutionHeadline": "Standardized Excellence.",
@@ -30,6 +32,7 @@
     "listItemHeadline": "Struggling with Digital Transformation?",
     "listItemDescription": "Seamlessly integrate new digital solutions with our API-first, cloud-native platform.",
     "listItemImage": "https://picsum.photos/600/600?random=8",
+    "highlighterColor": "#ec4899",
     "expandedContent": {
       "problem": "Integrating new digital solutions with existing IT infrastructure, ensuring data security, and managing complex governance requirements are significant hurdles for businesses, especially larger enterprises.",
       "solutionHeadline": "Seamless AI-Powered Integration.",
@@ -43,6 +46,7 @@
     "listItemHeadline": "Limited Market Reach?",
     "listItemDescription": "Expand your service offerings and scale confidently with our white-label franchise model.",
     "listItemImage": "https://picsum.photos/600/600?random=9",
+    "highlighterColor": "#f97316",
     "expandedContent": {
       "problem": "Many businesses, from start-ups to established firms, face significant challenges in expanding their market footprint and scaling operations efficiently without ballooning costs.",
       "solutionHeadline": "Expand with Confidence.",
@@ -56,6 +60,7 @@
     "listItemHeadline": "High Customer Acquisition Costs?",
     "listItemDescription": "Attract a broad market spectrum with accessible price points and high lifetime value.",
     "listItemImage": "https://picsum.photos/600/600?random=10",
+    "highlighterColor": "#10b981",
     "expandedContent": {
       "problem": "Traditional marketing and sales channels often result in prohibitively high customer acquisition costs, impacting profitability and hindering sustainable growth, especially for service-based businesses.",
       "solutionHeadline": "Efficient Acquisition, Maximized ROI.",

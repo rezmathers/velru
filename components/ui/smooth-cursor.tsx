@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useAnimate, useSpring } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface MagicCursorProps {
   springConfig?: {
@@ -13,81 +13,94 @@ export interface MagicCursorProps {
 }
 
 export function MagicCursor({
-  springConfig = { damping: 35, stiffness: 400, mass: 1 },
+  springConfig = { damping: 30, stiffness: 500, mass: 1 },
   padding = 8,
 }: MagicCursorProps) {
   const [scope, animate] = useAnimate();
-  // We now store a reference to the actual HTML element, not just its position.
-  const targetElementRef = useRef<HTMLElement | null>(null);
+  const [isHoveringTarget, setIsHoveringTarget] = useState(false);
+  const targetRectRef = useRef<DOMRect | null>(null);
 
   const cursorX = useSpring(-100, springConfig);
   const cursorY = useSpring(-100, springConfig);
 
+  // This effect listens for the custom event from the magnetic button
+  // and applies the magnetic pull to the cursor's position.
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest<HTMLElement>(
-        "[data-cursor-target='true']"
-      );
+    const handleMagneticMove = (event: Event) => {
+      if (isHoveringTarget && targetRectRef.current) {
+        const { position } = (event as CustomEvent).detail;
+        const initialRect = targetRectRef.current;
+        
+        const newCenterX = initialRect.x + initialRect.width / 2 + position.x;
+        const newCenterY = initialRect.y + initialRect.height / 2 + position.y;
+        
+        cursorX.set(newCenterX);
+        cursorY.set(newCenterY);
+      }
+    };
+
+    window.addEventListener("magnetic-move", handleMagneticMove);
+    return () => {
+      window.removeEventListener("magnetic-move", handleMagneticMove);
+    };
+  }, [isHoveringTarget, cursorX, cursorY]);
+
+  // This effect handles the main cursor logic
+  useEffect(() => {
+    const handleMouseEnter = (e: MouseEvent) => {
+      setIsHoveringTarget(true);
+      const target = e.currentTarget as HTMLElement;
+      const rect = target.getBoundingClientRect();
+      targetRectRef.current = rect;
       
-      const isHoveringTarget = target !== null;
-      const wasHoveringTarget = targetElementRef.current !== null;
+      // Animate the cursor's shape to match the target
+      animate(
+        scope.current,
+        {
+          width: rect.width + padding,
+          height: rect.height + padding,
+          borderRadius: window.getComputedStyle(target).borderRadius,
+        },
+        { type: "spring", ...springConfig }
+      );
+    };
 
-      if (isHoveringTarget && target !== targetElementRef.current) {
-        // Store the element itself in the ref.
-        targetElementRef.current = target;
-        const rect = target.getBoundingClientRect();
-        cursorX.set(rect.left + rect.width / 2);
-        cursorY.set(rect.top + rect.height / 2);
-        animate(
-          scope.current,
-          {
-            width: rect.width + padding,
-            height: rect.height + padding,
-            borderRadius: window.getComputedStyle(target).borderRadius,
-          },
-          { type: "spring", ...springConfig }
-        );
-      }
+    const handleMouseLeave = () => {
+      setIsHoveringTarget(false);
+      targetRectRef.current = null;
+      animate(
+        scope.current,
+        { width: 24, height: 24, borderRadius: "50%" },
+        { type: "spring", ...springConfig }
+      );
+    };
 
-      if (!isHoveringTarget && wasHoveringTarget) {
-        targetElementRef.current = null;
-        animate(
-          scope.current,
-          { width: 24, height: 24, borderRadius: "50%" },
-          { type: "spring", ...springConfig }
-        );
-      }
-
+    const handleMouseMove = (e: MouseEvent) => {
+      // Only move the cursor freely when not hovering over a target
       if (!isHoveringTarget) {
         cursorX.set(e.clientX);
         cursorY.set(e.clientY);
       }
     };
 
-    // --- NEW EFFECT LOGIC ---
-    // This function will run whenever the page is scrolled.
-    const handleScroll = () => {
-      // If the cursor is currently snapped to a target...
-      if (targetElementRef.current) {
-        // ...re-calculate that target's position and update the cursor.
-        const rect = targetElementRef.current.getBoundingClientRect();
-        cursorX.set(rect.left + rect.width / 2);
-        cursorY.set(rect.top + rect.height / 2);
-      }
-    };
-
-    // Add listeners for both mouse movement and scrolling.
+    const targets = document.querySelectorAll("[data-cursor-target='true']");
+    targets.forEach((target) => {
+      target.addEventListener("mouseenter", handleMouseEnter as EventListener);
+      target.addEventListener("mouseleave", handleMouseLeave as EventListener);
+    });
+    
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("scroll", handleScroll, { passive: true });
     document.body.style.cursor = "none";
 
-    // Cleanup function to remove listeners.
     return () => {
+      targets.forEach((target) => {
+        target.removeEventListener("mouseenter", handleMouseEnter as EventListener);
+        target.removeEventListener("mouseleave", handleMouseLeave as EventListener);
+      });
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("scroll", handleScroll);
       document.body.style.cursor = "auto";
     };
-  }, [animate, padding, springConfig, cursorX, cursorY]);
+  }, [animate, padding, springConfig, cursorX, cursorY, isHoveringTarget]);
 
   return (
     <motion.div
@@ -99,14 +112,14 @@ export function MagicCursor({
         width: 24,
         height: 24,
         borderRadius: "50%",
-        backgroundColor: "white",
+        backgroundColor: "grey",
         opacity: 0.5,
         x: cursorX,
         y: cursorY,
         translateX: "-50%",
         translateY: "-50%",
         pointerEvents: "none",
-        zIndex:0,
+        zIndex: 40,
         willChange: "transform, width, height, border-radius",
       }}
       initial={{ scale: 0, opacity: 0 }}

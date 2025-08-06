@@ -126,4 +126,6 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
+body {
+  background-color: #171717; /* Or bg-neutral-900, etc. */
+}
