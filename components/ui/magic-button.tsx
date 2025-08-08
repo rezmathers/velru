@@ -18,14 +18,17 @@ export default function MagneticButton({
     if (!ref.current) return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current.getBoundingClientRect();
-    const x = clientX - (left + width / 2);
-    const y = clientY - (top + height / 2);
-    const newPosition = { x, y };
-    setPosition(newPosition);
+    
+    // This is the key change: we multiply the distance by a small fraction (e.g., 0.2)
+    // to reduce the amount the content moves. This creates the "wiggle" effect.
+    const x = (clientX - (left + width / 2)) * 0.2;
+    const y = (clientY - (top + height / 2)) * 0.2;
+    
+    setPosition({ x, y });
 
-    // Dispatch the custom event with the position offset
+    // Dispatch the custom event with the dampened position offset
     window.dispatchEvent(
-      new CustomEvent("magnetic-move", { detail: { position: newPosition } })
+      new CustomEvent("magnetic-move", { detail: { position: { x, y } } })
     );
   };
 
@@ -54,7 +57,8 @@ export default function MagneticButton({
       <motion.span
         className="relative block"
         animate={{ x, y }}
-        transition={{ type: "spring", damping: 25, stiffness: 150, mass:  0.01 }}
+        // The transition is slightly adjusted for a snappier feel.
+        transition={{ type: "spring", damping: 15, stiffness: 250, mass: 0.1 }}
         style={{ zIndex: 50 }}
       >
         {children}

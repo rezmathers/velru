@@ -3,11 +3,17 @@ export interface HeroContentItem {
   listItemHeadline: string;
   listItemDescription: string;
   listItemImage: string; // Add the new image field here
-  highlighterColor: string;
+
+  
+  highlighterImage: string;
   expandedContent: {
     problem: string;
+    problemHeadline: string; // Add this new field
     solutionHeadline: string;
     solutionDescription: string;
+    video: string;
+    cta1: string; // Add cta1
+    cta2: string; // Add cta2
     image: string;
     altText: string;
   };

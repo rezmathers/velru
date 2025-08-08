@@ -14,7 +14,7 @@ export interface MagicCursorProps {
 
 export function MagicCursor({
   springConfig = { damping: 30, stiffness: 500, mass: 1 },
-  padding = 8,
+  padding = 1,
 }: MagicCursorProps) {
   const [scope, animate] = useAnimate();
   const [isHoveringTarget, setIsHoveringTarget] = useState(false);
@@ -60,6 +60,9 @@ export function MagicCursor({
           width: rect.width + padding,
           height: rect.height + padding,
           borderRadius: window.getComputedStyle(target).borderRadius,
+          // --- THIS IS THE KEY CHANGE ---
+          // Decrease opacity when latched on
+          opacity: 0.2,
         },
         { type: "spring", ...springConfig }
       );
@@ -70,7 +73,14 @@ export function MagicCursor({
       targetRectRef.current = null;
       animate(
         scope.current,
-        { width: 24, height: 24, borderRadius: "50%" },
+        {
+          width: 24,
+          height: 24,
+          borderRadius: "50%",
+          // --- THIS IS THE KEY CHANGE ---
+          // Restore opacity when leaving
+          opacity: 0.5,
+        },
         { type: "spring", ...springConfig }
       );
     };
@@ -112,15 +122,15 @@ export function MagicCursor({
         width: 24,
         height: 24,
         borderRadius: "50%",
-        backgroundColor: "grey",
+        backgroundColor: "white",
         opacity: 0.5,
         x: cursorX,
         y: cursorY,
         translateX: "-50%",
         translateY: "-50%",
         pointerEvents: "none",
-        zIndex: 40,
-        willChange: "transform, width, height, border-radius",
+        zIndex: 0,
+        willChange: "transform, width, height, border-radius , opacity",
       }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1, transition: { duration: 0.2 } }}
