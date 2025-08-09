@@ -122,14 +122,14 @@ const ListItemCard: FC<{ item: HeroContentItem; isActive: boolean; onClick: (e: 
       key={item.id}
       data-id={item.id}
       onClick={onClick}
-      className="my-8  relative cursor-none h-48 overflow-visible "
+      className="my-8  relative cursor-none h-48 overflow-visible"
       style={{ scrollSnapAlign: 'center' }}
     >
       {/* The snapping highlighter background */}
       {isActive && (
         <motion.div
           layoutId="highlighter"
-          className="absolute inset-0 rounded-4xl overflow-hidden border-[1px] border-white/15" // Added overflow-hidden here
+          className="absolute inset-0 rounded-4xl overflow-hidden border-[1px] border-white/40" // Added overflow-hidden here
           transition={{
             type: 'spring',
             stiffness: 1150,
@@ -142,7 +142,7 @@ const ListItemCard: FC<{ item: HeroContentItem; isActive: boolean; onClick: (e: 
             src={item.highlighterImage}
             alt={item.listItemHeadline}
             fill
-            className="object-cover brightness-50 contrast-150 pointer-events-none blur-xl"
+            className="object-cover brightness-50 contrast-150 pointer-events-none blur-xl opacity-50 "
           />
           
           
@@ -151,7 +151,7 @@ const ListItemCard: FC<{ item: HeroContentItem; isActive: boolean; onClick: (e: 
       
       {/* Card Content Container */}
       <div
-        className={`relative flex h-full items-center transition-colors duration-100 rounded-2xl ${
+        className={`relative flex h-full items-center transition-colors duration-100 rounded-2xl -z-10${
           !isActive && 'bg-transparent'
         }`}
       >
@@ -164,7 +164,7 @@ const ListItemCard: FC<{ item: HeroContentItem; isActive: boolean; onClick: (e: 
           <motion.h3
             layout
             className={`text-2xl font-medium  duration-300 ${
-              isActive ? 'text-white' : 'text-neutral-800'
+              isActive ? 'text-white' : 'text-neutral-600 '
             }`}
           >
             {item.listItemHeadline}

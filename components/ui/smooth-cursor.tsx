@@ -129,7 +129,7 @@ export function MagicCursor({
         translateX: "-50%",
         translateY: "-50%",
         pointerEvents: "none",
-        zIndex: 0,
+        zIndex: 20,
         willChange: "transform, width, height, border-radius , opacity",
       }}
       initial={{ scale: 0, opacity: 0 }}

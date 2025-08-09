@@ -10,7 +10,7 @@ interface LeftStickyBoxProps {
 const LeftStickyBox: FC<LeftStickyBoxProps> = ({ content }) => {
   return (
     // Main container with a fixed aspect ratio and overflow hidden for the video
-    <div className="relative w-full max-w-xl h-[80vh] rounded-4xl overflow-hidden border-[0.5px] border-neutral-200/5">
+    <div className="relative w-full max-w-xl h-[80vh] rounded-4xl overflow-hidden border-[0.5px] border-white/40">
       {/* Background Video */}
       <video
         // The key is crucial for replaying the video on source change.
@@ -65,7 +65,7 @@ const LeftStickyBox: FC<LeftStickyBoxProps> = ({ content }) => {
               className="rounded-3xl"
                 data-cursor-target="true"
               >
-                <div className="px-6 py-4 text-lg font-light text-white bg-white/10 rounded-3xl cursor-none">
+                <div className="px-6 py-4 text-lg font-light text-white bg-white/10 rounded-3xl cursor-none border border-white/40">
                   {content.cta2}
                 </div>
                 

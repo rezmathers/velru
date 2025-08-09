@@ -9,46 +9,40 @@ import { AuroraBackground } from "@/components/ui/aurorabackground";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ['400', '500', '700'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
+  weight: ["400", "500", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
 });
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin"],
-  weight: ['400', '500', '700'],
-  variable: '--font-be-vietnam-pro',
-  display: 'swap',
+  weight: ["400", "500", "700"],
+  variable: "--font-be-vietnam-pro",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "VELRU - AI Transformation Partner",
   description: "Your AI Transformation Partner for on-demand C-Suite expertise.",
 };
-// app/layout.tsx (only the body part shown)
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${spaceGrotesk.variable} ${beVietnamPro.variable}`}>
-      {/* put the base background on body */}
-      <body >
-
-
+      <body>
+        <div className="w-full items-center justify-center cursor-none bg-amber-50/5 fixed  backdrop-blur-sm border-b border-white/5 h-16 z-10"></div>
+        <Navbar/>
         <AuroraBackground>
-          <div >
-<DotBackgroundDemo/>
+          <div>
+            <DotBackgroundDemo />
           </div>
-        </AuroraBackground >
+        </AuroraBackground>
+       
         <SmoothScrollProvider>
           <MagicCursor />
-          {/* <Navbar /> */}
           <main className="relative">{children}</main>
-
           <MagicCursor />
-          {/* <Navbar /> */}
-
         </SmoothScrollProvider>
-
-
       </body>
     </html>
   );
