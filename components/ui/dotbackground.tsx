@@ -12,7 +12,7 @@ export function DotBackgroundDemo() {
         )}
       />
       {/* Radial gradient for the container to give a faded look */}
-      {/* <div className="pointer-events-none absolute inset-0 flex items-center justify-center  [mask-image:radial-gradient(ellipse_at_center,transparent_40%,white)] bg-red-500"></div> */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center  [mask-image:radial-gradient(ellipse_at_center,transparent_70%,white)] bg-black"></div>
       
     </div>
   );
